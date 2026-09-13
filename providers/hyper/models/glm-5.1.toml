@@ -4,9 +4,9 @@ last_updated = "2026-07-22"
 reasoning_options = []
 
 [cost]
-input = 1.262
-output = 4.132
-cache_write = 0.631
+input = 1.318
+output = 4.308
+cache_read = 0.659
 
 [limit]
 context = 202_750
