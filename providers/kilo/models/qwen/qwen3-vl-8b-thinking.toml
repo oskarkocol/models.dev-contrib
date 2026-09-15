@@ -1,26 +1,21 @@
 name = "Qwen: Qwen3 VL 8B Thinking"
 description = "Qwen vision-language model for visual reasoning, documents, and agent tasks"
-family = "qwen"
-release_date = "2025-10-14"
-last_updated = "2025-10-14"
+release_date = "2025-10-15"
+last_updated = "2025-11-25"
 attachment = true
+reasoning_options = []
 reasoning = true
 temperature = true
 tool_call = true
-structured_output = true
 open_weights = false
 
-[[reasoning_options]]
-type = "effort"
-values = ["high"]
-
 [cost]
-input = 0.18
-output = 2.1
+input = 0.180
+output = 2.100
 
 [limit]
-context = 131_072
-output = 32_768
+context = 131072
+output = 32768
 
 [modalities]
 input = ["image", "text"]

@@ -1,14 +1,22 @@
-base_model = "openai/gpt-oss-120b"
+name = "OpenAI: gpt-oss-120b"
 description = "Open-weight GPT model for self-hosted reasoning and instruction-following workloads"
-
-[[reasoning_options]]
-type = "effort"
-values = ["low", "medium", "high"]
+release_date = "2025-08-05"
+last_updated = "2025-08-05"
+attachment = false
+reasoning_options = [{ type = "effort", values = ["low", "medium", "high"] }]
+reasoning = true
+temperature = true
+tool_call = true
+open_weights = true
 
 [cost]
-input = 0.03
+input = 0.030
 output = 0.17
-cache_read = 0.03
 
 [limit]
-output = 117_964
+context = 131072
+output = 26215
+
+[modalities]
+input = ["text"]
+output = ["text"]
