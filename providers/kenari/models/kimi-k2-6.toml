@@ -2,5 +2,5 @@ base_model = "moonshotai/kimi-k2.6"
 reasoning_options = []
 
 [cost]
-input = 0
-output = 0
+input = 10000
+output = 50000
