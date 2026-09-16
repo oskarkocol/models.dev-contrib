@@ -17,6 +17,7 @@ values = ["none", "high"]
 [cost]
 input = 0.15
 output = 0.60
+cache_read = 0.015
 
 [limit]
 context = 256_000
