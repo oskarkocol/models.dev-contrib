@@ -1,4 +1,4 @@
-name = "Gemma 4"
+name = "Gemma 4 31B"
 description = "Open Gemma instruction model for efficient chat and self-hosted deployments"
 family = "gemma"
 release_date = "2026-04-22"
@@ -12,7 +12,7 @@ open_weights = true
 
 [cost]
 input = 0.18
-output = 0.5
+output = 0.50
 cache_read = 0.036
 
 [limit]
@@ -20,5 +20,5 @@ context = 256_000
 output = 8_192
 
 [modalities]
-input = ["text", "image", "video"]
+input = ["text", "image"]
 output = ["text"]
