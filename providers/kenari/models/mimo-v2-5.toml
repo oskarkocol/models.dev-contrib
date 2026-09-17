@@ -2,5 +2,5 @@ base_model = "xiaomi/mimo-v2.5"
 reasoning_options = []
 
 [cost]
-input = 0
-output = 0
+input = 2900.00
+output = 5800.00

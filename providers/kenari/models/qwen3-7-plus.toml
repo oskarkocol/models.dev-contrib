@@ -2,5 +2,5 @@ base_model = "alibaba/qwen3.7-plus"
 reasoning_options = []
 
 [cost]
-input = 0
-output = 0
+input = 6700.00
+output = 26000.00

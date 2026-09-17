@@ -5,6 +5,6 @@ type = "effort"
 values = ["none", "low", "medium", "high", "xhigh"]
 
 [cost]
-input = 0
-output = 0
+input = 15000.00
+output = 94000.00
 
