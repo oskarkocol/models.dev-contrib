@@ -2,9 +2,9 @@ base_model = "zhipuai/glm-5.2"
 name = "GLM 5.2"
 
 [cost]
-input = 1.40
-output = 4.50
-cache_read = 0.26
+input = 0.98
+output = 3.08
+cache_read = 0.18
 
 [[reasoning_options]]
 type = "effort"
