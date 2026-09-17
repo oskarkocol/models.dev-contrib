@@ -1,30 +1,25 @@
 name = "Google: Gemini 2.5 Pro Preview 06-05"
 description = "Advanced Gemini model for complex reasoning, coding, and multimodal analysis"
-family = "gemini"
 release_date = "2025-06-05"
-last_updated = "2025-06-05"
+last_updated = "2026-03-15"
 attachment = true
+reasoning_options = [{ type = "budget_tokens" }]
 reasoning = true
 temperature = true
 tool_call = true
-structured_output = true
 open_weights = false
 
-[[reasoning_options]]
-type = "effort"
-values = ["high"]
-
 [cost]
-input = 1.25
-output = 10
-reasoning = 10
-cache_read = 0.125
-cache_write = 0.375
+input = 0.62
+output = 5.000
+reasoning = 5.000
+cache_read = 0.062
+cache_write = 0.188
 
 [limit]
-context = 1_048_576
-output = 65_536
+context = 1048576
+output = 65536
 
 [modalities]
-input = ["pdf", "image", "text", "audio"]
+input = ["audio", "image", "pdf", "text"]
 output = ["text"]
