@@ -14,7 +14,7 @@ open_weights = false
 [cost]
 input = 0.10
 output = 0.40
-cache_read = 0.03
+cache_read = 0.01
 cache_write = 1.00
 
 [limit]
