@@ -1,16 +1,24 @@
-base_model = "alibaba/qwen3.7-max"
+name = "Qwen: Qwen3.7 Max"
 description = "Flagship Qwen model for complex reasoning, coding, and agentic workflows"
-structured_output = true
-
-[[reasoning_options]]
-type = "effort"
-values = ["none", "high"]
+release_date = "2025-08-26"
+last_updated = "2026-05-27"
+attachment = false
+reasoning_options = [{ type = "toggle" }, { type = "budget_tokens", min = 1, max = 262_144 }]
+reasoning = true
+tool_call = true
+temperature = true
+open_weights = false
 
 [cost]
-input = 1.25
-output = 3.75
-cache_read = 0.125
-cache_write = 1.5625
+input = 1.475
+output = 4.425
+cache_read = 0.2950
+cache_write = 1.84375
 
 [limit]
-output = 131_072
+context = 1000000
+output = 65536
+
+[modalities]
+input = ["text"]
+output = ["text"]
