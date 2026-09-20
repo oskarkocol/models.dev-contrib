@@ -2806,6 +2806,28 @@ test("resolves Eden AI aliases to the model they point at", () => {
   ).toBe("anthropic/claude-opus-5");
 });
 
+test("preserves model type when formatting synced TOML", () => {
+  const content = formatToml({
+    id: "typesafe/jev-latest",
+    type: "decision",
+    name: "Jev",
+    description: "System One model for typed decisions",
+    release_date: "2026-09-15",
+    last_updated: "2026-09-15",
+    attachment: false,
+    reasoning: false,
+    tool_call: false,
+    open_weights: false,
+    limit: { context: 64_000, output: 0 },
+    modalities: { input: ["text"], output: ["text"] },
+  });
+
+  expect(Bun.TOML.parse(content)).toMatchObject({
+    type: "decision",
+    name: "Jev",
+  });
+});
+
 test("formats interleaved as a root field before reasoning option tables", () => {
   const content = formatToml({
     id: "example/model",
@@ -4538,6 +4560,83 @@ test("Vercel Claude Opus fast variants factor onto base opus metadata", () => {
   });
   expect(synced).not.toHaveProperty("description");
   expect(synced).not.toHaveProperty("family");
+});
+
+test("Vercel sync accepts evaluation and unknown future model types", () => {
+  const [evaluation, future] = vercel.parseModels({
+    data: [
+      {
+        id: "typesafe-ai/jev",
+        name: "Jev",
+        created: 1_755_815_280,
+        released: 1_789_430_400,
+        context_window: 0,
+        max_tokens: 0,
+        type: "evaluation",
+        pricing: { input: "0.000000042", output: "0" },
+      },
+      {
+        id: "example/future-model",
+        name: "Future Model",
+        created: 1_755_815_280,
+        context_window: 8_000,
+        max_tokens: 4_000,
+        type: "something-new",
+      },
+    ],
+  });
+
+  expect(evaluation).toBeDefined();
+  expect(future).toBeDefined();
+  expect(buildVercelModel(evaluation!, undefined)).toMatchObject({
+    cost: { input: 0.042, output: 0 },
+    limit: { context: 0, output: 0 },
+    modalities: { input: ["text"], output: ["text"] },
+  });
+  expect(buildVercelModel(future!, undefined)).toMatchObject({
+    limit: { context: 8_000, output: 4_000 },
+    modalities: { input: ["text"], output: ["text"] },
+  });
+});
+
+test("Vercel family inference requires word boundaries", () => {
+  const [jev, rerank, o3] = vercel.parseModels({
+    data: [
+      {
+        id: "typesafe-ai/jev",
+        name: "Jev",
+        created: 1_755_815_280,
+        context_window: 0,
+        max_tokens: 0,
+        type: "evaluation",
+      },
+      {
+        id: "cohere/rerank-v3.5",
+        name: "Cohere Rerank 3.5",
+        created: 1_733_000_000,
+        context_window: 4_096,
+        max_tokens: 4_096,
+        type: "reranking",
+      },
+      {
+        id: "example/o3",
+        name: "o3",
+        created: 1_745_000_000,
+        context_window: 200_000,
+        max_tokens: 100_000,
+        type: "language",
+      },
+    ],
+  });
+
+  // No fuzzy subsequence matches ("yi") or single-letter substring matches ("o").
+  expect(buildVercelModel(jev!, undefined).family).toBeUndefined();
+  expect(buildVercelModel(rerank!, undefined).family).toBeUndefined();
+  // Genuine o-series IDs still match, and keep their stamp when re-synced.
+  expect(buildVercelModel(o3!, undefined).family).toBe("o");
+  expect(buildVercelModel(o3!, { family: "o" }).family).toBe("o");
+  // Existing bogus "o" stamps self-heal on the next sync.
+  expect(buildVercelModel(rerank!, { family: "o" }).family).toBeUndefined();
 });
 
 test("Vercel empty existing reasoning_options falls back to the route base menu", () => {
