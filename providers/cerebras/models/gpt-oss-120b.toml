@@ -1,5 +1,5 @@
 base_model = "openai/gpt-oss-120b"
-last_updated = "2026-06-10"
+last_updated = "2026-09-20"
 # Model-specific reasoning HTTP values (accessed 2026-06-25):
 # reasoning_effort = "low"|"medium"|"high"; default is "medium".
 # Sources:
@@ -10,6 +10,7 @@ reasoning_options = [{ type = "effort", values = ["low", "medium", "high"] }]
 [cost]
 input = 0.35
 output = 0.75
+cache_read = 0.35
 
 [limit]
 output = 40_960
