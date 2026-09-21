@@ -5,4 +5,4 @@ reasoning_options = []
 input = 1.5
 output = 9
 cache_read = 0.15
-input_audio = 1.5
+input_audio = 0.0
