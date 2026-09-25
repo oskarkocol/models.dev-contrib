@@ -13,7 +13,7 @@ tool_call = true
 input = 4.3
 output = 21
 cache_read = 0.43
-cache_write = 5.3
+cache_write = 5.4
 
 [limit]
 context = 983_040
