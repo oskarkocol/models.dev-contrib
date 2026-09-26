@@ -2,8 +2,8 @@ base_model = "minimax/MiniMax-M3"
 reasoning_options = [{ type = "toggle" }]
 
 [cost]
-input = 0.60
-output = 2.40
+input = 0.30
+output = 1.20
 
 [provider]
 npm = "@ai-sdk/anthropic"

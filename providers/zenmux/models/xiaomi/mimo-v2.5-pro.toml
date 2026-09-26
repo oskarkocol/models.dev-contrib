@@ -5,8 +5,8 @@ reasoning_options = [{ type = "toggle" }]
 field = "reasoning_content"
 
 [cost]
-input = 1
-output = 3
+input = 0.44
+output = 0.88
 cache_read = 0.2
 
 [[cost.tiers]]
