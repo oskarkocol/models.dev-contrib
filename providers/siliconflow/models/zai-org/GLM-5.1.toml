@@ -15,9 +15,9 @@ open_weights = true
 field = "reasoning_content"
 
 [cost]
-input = 1.4
-output = 4.4
-cache_read = 0.26
+input = 1.2
+output = 3.7
+cache_input = 0.26
 cache_write = 0
 
 [limit]
