@@ -2,7 +2,7 @@ name = "Mistral Small 4"
 description = "Fast Mistral production model for chat, extraction, and cost-sensitive agents"
 family = "mistral-small"
 release_date = "2026-03-16"
-last_updated = "2026-03-16"
+last_updated = "2026-09-27"
 attachment = true
 reasoning = true
 temperature = true
@@ -17,6 +17,7 @@ values = ["none", "high"]
 [cost]
 input = 0.15
 output = 0.60
+cache_read = 0.015
 
 [limit]
 context = 256_000
