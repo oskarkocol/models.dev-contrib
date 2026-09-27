@@ -5,7 +5,7 @@ base_model = "zhipuai/glm-5.3-flash"
 name = "GLM-5.3-FlashX"
 description = "High-speed GLM-5.3-Flash serving option for coding and agent workflows"
 release_date = "2026-09-18"
-last_updated = "2026-09-18"
+last_updated = "2026-09-27"
 
 [[reasoning_options]]
 type = "effort"
@@ -17,5 +17,5 @@ field = "reasoning_content"
 [cost]
 input = 0.37
 output = 1.25
-cache_read = 0.075
+cache_read = 0.09
 cache_write = 0
