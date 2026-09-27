@@ -11,7 +11,7 @@ reasoning_options = [{ type = "effort", values = ["low", "medium", "high"] }]
 
 [cost]
 input = 0.07
-output = 0.30
+output = 0.15
 
 [limit]
 output = 128_000
