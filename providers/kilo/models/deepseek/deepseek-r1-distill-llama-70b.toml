@@ -1,26 +1,22 @@
-name = "DeepSeek: R1 Distill Llama 70B (retires Sep 28)"
+name = "DeepSeek: R1 Distill Llama 70B"
 description = "DeepSeek reasoning model for multi-step analysis, math, coding, and tools"
-family = "deepseek"
 release_date = "2025-01-23"
-last_updated = "2025-01-23"
+last_updated = "2026-03-15"
 attachment = false
+reasoning_options = [{ type = "toggle" }]
 reasoning = true
 temperature = true
 tool_call = false
-structured_output = false
-open_weights = false
-
-[[reasoning_options]]
-type = "effort"
-values = ["none", "high"]
+open_weights = true
 
 [cost]
-input = 0.8
+input = 0.80
 output = 0.8
+cache_read = 0.015
 
 [limit]
-context = 8_192
-output = 7_372
+context = 131072
+output = 16384
 
 [modalities]
 input = ["text"]
