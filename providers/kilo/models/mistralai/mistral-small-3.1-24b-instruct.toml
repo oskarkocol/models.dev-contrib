@@ -1,23 +1,22 @@
 name = "Mistral: Mistral Small 3.1 24B"
 description = "Efficient Mistral model for fast chat, extraction, and production assistants"
-family = "mistral-small"
 release_date = "2025-03-17"
-last_updated = "2025-03-17"
+last_updated = "2026-03-15"
 attachment = true
 reasoning = false
 temperature = true
-tool_call = true
-structured_output = false
-open_weights = false
+tool_call = false
+open_weights = true
 
 [cost]
 input = 0.351
 output = 0.555
+cache_read = 0.000
 
 [limit]
-context = 128_000
-output = 102_400
+context = 128000
+output = 131072
 
 [modalities]
-input = ["text", "image"]
+input = ["image", "text"]
 output = ["text"]
