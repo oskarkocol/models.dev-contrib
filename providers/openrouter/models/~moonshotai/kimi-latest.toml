@@ -1,6 +1,4 @@
-# Toggle: reasoning.enabled = true|false
-# https://openrouter.ai/docs/guides/best-practices/reasoning-tokens
-name = "Kimi Latest"
+name = "MoonshotAI Kimi Latest"
 description = "Kimi multimodal agent model for visual understanding, coding, and planning"
 family = "kimi"
 release_date = "2026-04-27"
@@ -11,23 +9,17 @@ temperature = true
 tool_call = true
 structured_output = true
 open_weights = false
-
-[[reasoning_options]]
-type = "toggle"
-
-[[reasoning_options]]
-type = "effort"
-values = ["low", "high", "max"]
+reasoning_options = []
 
 [cost]
-input = 0.995
-output = 9
-cache_read = 0.3
+input = 0.70
+output = 10.00
+cache_read = 0.70
 
 [limit]
-context = 1_048_576
-output = 943_718
+context = 262_144
+output = 262_144
 
 [modalities]
-input = ["text", "image", "video"]
+input = ["text", "image"]
 output = ["text"]

@@ -15,8 +15,8 @@ input = 2.5
 output = 5
 
 [limit]
-context = 32_768
-output = 4_096
+context = 16_384
+output = 2_048
 
 [modalities]
 input = ["text"]

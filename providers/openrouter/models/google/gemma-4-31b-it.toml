@@ -5,11 +5,11 @@ type = "toggle"
 
 [cost]
 input = 0.09
-output = 0.34
+output = 0.35
 cache_read = 0.05
 
 [limit]
-output = 16_384
+output = 262_144
 
 [modalities]
 input = ["image", "text", "video"]

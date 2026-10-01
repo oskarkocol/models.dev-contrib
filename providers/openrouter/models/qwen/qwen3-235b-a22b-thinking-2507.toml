@@ -13,12 +13,12 @@ open_weights = true
 reasoning_options = []
 
 [cost]
-input = 0.23
-output = 2.3
+input = 0.2300
+output = 2.300
 
 [limit]
 context = 131_072
-output = 117_964
+output = 262_144
 
 [modalities]
 input = ["text"]

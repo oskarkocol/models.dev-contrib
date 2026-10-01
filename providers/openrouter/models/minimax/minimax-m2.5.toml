@@ -8,7 +8,7 @@ field = "reasoning_details"
 [cost]
 input = 0.27
 output = 1.08
-cache_read = 0.027
 
 [limit]
-output = 128_000
+context = 196_608
+output = 196_608
