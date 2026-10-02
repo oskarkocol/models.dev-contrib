@@ -11,14 +11,14 @@ open_weights = false
 tool_call = true
 
 [cost]
-input = 0.85
+input = 0.86
 output = 4.3
-cache_read = 0.085
+cache_read = 0.086
 cache_write = 1.1
 
 [limit]
 context = 192_000
-output = 64_000
+output = 4.2929
 
 [modalities]
 input = ["text", "image", "pdf"]

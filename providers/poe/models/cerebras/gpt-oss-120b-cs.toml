@@ -11,11 +11,11 @@ tool_call = true
 
 [cost]
 input = 0.35
-output = 0.75
+output = 0.76
 
 [limit]
 context = 128_000
-output = 0
+output = 0.7576
 
 [modalities]
 input = ["text"]
