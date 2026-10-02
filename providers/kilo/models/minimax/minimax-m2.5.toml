@@ -1,16 +1,23 @@
-base_model = "minimax/MiniMax-M2.5"
+name = "MiniMax: MiniMax M2.5"
 description = "MiniMax model for chat, coding, office work, and agentic tasks"
-structured_output = true
-
-[[reasoning_options]]
-type = "effort"
-values = ["high"]
+release_date = "2026-02-12"
+last_updated = "2026-03-15"
+attachment = false
+reasoning_options = []
+reasoning = true
+temperature = true
+tool_call = true
+open_weights = true
 
 [cost]
-input = 0.3
-output = 1.2
-cache_read = 0.03
+input = 0.27
+output = 0.9
+cache_read = 0.030
 
 [limit]
-context = 200_000
-output = 128_000
+context = 196608
+output = 0.95
+
+[modalities]
+input = ["text"]
+output = ["text"]
