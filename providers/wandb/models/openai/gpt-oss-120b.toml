@@ -1,12 +1,24 @@
-base_model = "openai/gpt-oss-120b"
 name = "gpt-oss-120b"
-description = "Efficient Mixture-of-Experts model designed for high-reasoning, agentic and general-purpose use cases."
+description = "Open-weight GPT model for self-hosted reasoning and instruction-following workloads"
+family = "gpt-oss"
+release_date = "2025-08-05"
+last_updated = "2026-03-12"
+attachment = false
+reasoning = true
 reasoning_options = []
+structured_output = true
+temperature = true
+tool_call = true
+open_weights = false
 
 [cost]
 input = 0.03
-output = 0.17
-cache_read = 0.03
+output = 0.2
 
 [limit]
-output = 131_072
+context = 131_072
+output = 0.17
+
+[modalities]
+input = ["text"]
+output = ["text"]
