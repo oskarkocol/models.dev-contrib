@@ -1,15 +1,23 @@
-base_model = "deepseek/deepseek-v4-flash"
+name = "DeepSeek: DeepSeek V4 Flash"
 description = "Fast DeepSeek model for efficient chat, coding help, and agent loops"
-
-[[reasoning_options]]
-type = "effort"
-values = ["none", "high", "xhigh"]
+release_date = "2026-04-24"
+last_updated = "2026-05-01"
+attachment = false
+reasoning_options = [{ type = "toggle" }, { type = "effort", values = ["high", "xhigh"] }]
+reasoning = true
+tool_call = true
+temperature = true
+open_weights = false
 
 [cost]
-input = 0.14
-output = 0.28
-cache_read = 0.028
+input = 0.01
+output = 1.28
+cache_read = 0.0066
 
 [limit]
-context = 1_048_576
-output = 131_072
+context = 1048576
+output = 384000
+
+[modalities]
+input = ["text"]
+output = ["text"]

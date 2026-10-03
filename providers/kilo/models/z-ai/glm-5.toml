@@ -1,16 +1,22 @@
-base_model = "zhipuai/glm-5"
+name = "Z.ai: GLM 5"
 description = "Flagship GLM model for hybrid reasoning, coding, and agentic engineering"
-structured_output = true
-
-[[reasoning_options]]
-type = "effort"
-values = ["none", "high"]
+release_date = "2026-02-12"
+last_updated = "2026-03-15"
+attachment = false
+reasoning_options = [{ type = "toggle" }, { type = "effort", values = ["high", "xhigh"] }]
+reasoning = true
+temperature = true
+tool_call = true
+open_weights = true
 
 [cost]
-input = 0.6
-output = 1.92
-cache_read = 0.12
+input = 0.60
+output = 1.9
 
 [limit]
-context = 198_000
-output = 128_000
+context = 202752
+output = 131072
+
+[modalities]
+input = ["text"]
+output = ["text"]
