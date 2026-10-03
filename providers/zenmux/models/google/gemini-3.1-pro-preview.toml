@@ -14,7 +14,7 @@ open_weights = false
 input = 2.00
 output = 12.00
 cache_read = 0.20
-cache_write = 4.50
+cache_write = 0.00
 
 [limit]
 context = 1048_000
