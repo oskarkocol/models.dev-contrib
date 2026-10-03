@@ -5,14 +5,13 @@ release_date = "2026-04-01"
 last_updated = "2026-04-01"
 attachment = true
 reasoning = true
+reasoning_options = []
 temperature = true
 tool_call = true
-structured_output = true
 open_weights = true
-reasoning_options = []
 
 [cost]
-input = 0.1
+input = 0.10
 output = 0.95
 
 [limit]
