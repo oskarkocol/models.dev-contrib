@@ -7,7 +7,7 @@ last_updated = "2026-06-11"
 [cost]
 input = 0.1875
 output = 0.75
-cache_read = 0.09375
+cache_read = 0.09380
 
 [modalities]
 input = ["text", "image"]
