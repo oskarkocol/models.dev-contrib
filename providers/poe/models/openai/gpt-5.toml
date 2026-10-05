@@ -12,7 +12,7 @@ tool_call = true
 
 [cost]
 input = 1.1
-output = 9
+output = 9.0909
 cache_read = 0.11
 
 [limit]
