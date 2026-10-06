@@ -1,9 +1,22 @@
-base_model = "alibaba/qwen3-max"
+name = "Qwen: Qwen3 Max"
 description = "Flagship Qwen model for complex reasoning, coding, and agentic workflows"
-structured_output = true
+release_date = "2025-09-05"
+last_updated = "2026-03-15"
+attachment = false
+reasoning = false
+temperature = true
+tool_call = true
+open_weights = false
 
 [cost]
 input = 0.78
 output = 3.9
 cache_read = 0.156
-cache_write = 0.975
+
+[limit]
+context = 262144
+output = 32768
+
+[modalities]
+input = ["text"]
+output = ["text"]
