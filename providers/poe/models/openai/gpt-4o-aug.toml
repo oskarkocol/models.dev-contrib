@@ -10,7 +10,7 @@ open_weights = false
 tool_call = true
 
 [cost]
-input = 2.2
+input = 2.3
 output = 9
 cache_read = 1.1
 
