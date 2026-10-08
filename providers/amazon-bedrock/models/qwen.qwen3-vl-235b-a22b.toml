@@ -1,13 +1,23 @@
-# https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-qwen-qwen3-vl-235b-a22b.html
-# https://aws.amazon.com/bedrock/pricing/ (US Standard pricing)
-# Live Converse 2026-09-11: outputConfig.textFormat enforced a JSON schema.
-base_model = "alibaba/qwen3-vl-235b-a22b-instruct"
+name = "Qwen/Qwen3-VL-235B-A22B-Instruct"
+description = "Qwen vision-language model for visual reasoning, documents, and agent tasks"
+family = "qwen"
+release_date = "2025-10-04"
 last_updated = "2025-11-25"
+attachment = true
+reasoning = false
+temperature = true
+tool_call = true
+structured_output = true
+open_weights = false
 
 [cost]
-input = 0.53
-output = 2.66
+input = 0.5
+output = 2.7
 
 [limit]
-context = 262_144
+context = 262_000
 output = 262_000
+
+[modalities]
+input = ["text", "image"]
+output = ["text"]
