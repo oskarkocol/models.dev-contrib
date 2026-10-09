@@ -5,6 +5,6 @@ type = "effort"
 values = ["high", "xhigh"]
 
 [cost]
-input = 0
-output = 0
+input = 5_000
+output = 60_000
 
