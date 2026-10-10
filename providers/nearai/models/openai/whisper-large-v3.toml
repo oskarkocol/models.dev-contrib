@@ -15,7 +15,7 @@ output = 0.01
 
 [limit]
 context = 448
-output = 448
+output = 0.01
 
 [modalities]
 input = ["audio"]
