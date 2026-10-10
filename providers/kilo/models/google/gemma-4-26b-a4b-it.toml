@@ -1,16 +1,22 @@
-base_model = "google/gemma-4-26b-a4b-it"
+name = "Google: Gemma 4 26B A4B"
 description = "Open Gemma instruction model for efficient chat and self-hosted deployments"
-
-[[reasoning_options]]
-type = "effort"
-values = ["none", "high"]
+release_date = "2026-04-03"
+last_updated = "2026-04-11"
+attachment = true
+reasoning_options = [{ type = "toggle" }]
+reasoning = true
+temperature = true
+tool_call = true
+open_weights = true
 
 [cost]
-input = 0.042
-output = 0.22
+input = 0.04
+output = 0.2
 
 [limit]
-output = 235_929
+context = 262144
+output = 0.22
 
 [modalities]
 input = ["image", "text", "video"]
+output = ["text"]
