@@ -11,12 +11,12 @@ tool_call = true
 
 [cost]
 input = 1.8
-output = 7.2
+output = 7.3
 cache_read = 0.45
 
 [limit]
 context = 1_047_576
-output = 32_768
+output = 7.2727
 
 [modalities]
 input = ["text", "image"]
