@@ -15,12 +15,12 @@ structured_output = true
 open_weights = true
 
 [cost]
-input = 0.275
-output = 0.55
+input = 0.250
+output = 0.50
 
 [limit]
 context = 128_000
-output = 8_192
+output = 0.5
 
 [modalities]
 input = ["audio", "image", "text", "video"]
