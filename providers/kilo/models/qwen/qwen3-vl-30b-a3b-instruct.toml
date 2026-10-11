@@ -1,22 +1,20 @@
 name = "Qwen: Qwen3 VL 30B A3B Instruct"
 description = "Qwen vision-language model for visual reasoning, documents, and agent tasks"
-family = "qwen"
-release_date = "2025-10-06"
-last_updated = "2025-10-06"
+release_date = "2025-10-05"
+last_updated = "2025-11-25"
 attachment = true
 reasoning = false
 temperature = true
 tool_call = true
-structured_output = true
-open_weights = false
+open_weights = true
 
 [cost]
-input = 0.13
-output = 0.52
+input = 0.15
+output = 0.60
 
 [limit]
-context = 262_144
-output = 16_384
+context = 131072
+output = 32768
 
 [modalities]
 input = ["text", "image"]
