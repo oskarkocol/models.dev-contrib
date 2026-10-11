@@ -4,7 +4,7 @@ name = "MiniMax-M2.5-highspeed"
 description = "High-speed MiniMax model for low-latency coding and agent workflows"
 family = "minimax"
 release_date = "2026-02-13"
-last_updated = "2026-02-13"
+last_updated = "2026-10-11"
 attachment = false
 reasoning = true
 reasoning_options = []
@@ -15,7 +15,7 @@ open_weights = true
 [cost]
 input = 0.60
 output = 2.40
-cache_read = 0.03
+cache_read = 0.06
 cache_write = 0.375
 
 [limit]
