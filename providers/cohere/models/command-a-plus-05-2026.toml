@@ -16,5 +16,5 @@ type = "budget_tokens"
 min = 1
 
 [cost]
-input = 2.50
-output = 10.00
+input = 0.00
+output = 0.00
