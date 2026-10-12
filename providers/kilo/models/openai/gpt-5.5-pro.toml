@@ -1,10 +1,22 @@
-base_model = "openai/gpt-5.5-pro"
+name = "OpenAI: GPT-5.5 Pro"
 description = "Frontier GPT model for professional reasoning, coding, and multimodal work"
-
-[[reasoning_options]]
-type = "effort"
-values = ["medium", "high", "xhigh"]
+release_date = "2026-04-24"
+last_updated = "2026-05-01"
+attachment = true
+reasoning_options = [{ type = "effort", values = ["medium", "high", "xhigh"] }]
+reasoning = true
+tool_call = true
+temperature = false
+open_weights = false
 
 [cost]
-input = 30
-output = 180
+input = 15.0
+output = 90.0
+
+[limit]
+context = 1050000
+output = 128000
+
+[modalities]
+input = ["text", "image", "pdf"]
+output = ["text"]
