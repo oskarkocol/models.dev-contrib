@@ -4,7 +4,7 @@ reasoning_options = [{ type = "toggle" }]
 [cost]
 input = 0.40
 output = 1.60
-cache_read = 0.08
+cache_read = 0.04
 cache_write = 0.50
 
 [[cost.tiers]]
