@@ -1,19 +1,16 @@
-# Live metadata: reasoning only; no effort control or dedicated budget (2026-06-25).
-# https://api.venice.ai/api/v1/models?type=text
 base_model = "anthropic/claude-fable-5"
 release_date = "2026-06-10"
 last_updated = "2026-06-11"
 structured_output = true
-
-[[reasoning_options]]
-type = "effort"
-values = ["low", "medium", "high", "xhigh", "max"]
+# Live metadata: reasoning only; no effort control or dedicated budget (2026-06-25).
+# https://api.venice.ai/api/v1/models?type=text
+reasoning_options = []
 
 [cost]
 input = 12
 output = 60
 cache_read = 1.2
-cache_write = 15
+cache_write = 0
 
 [modalities]
 input = ["text", "image"]
