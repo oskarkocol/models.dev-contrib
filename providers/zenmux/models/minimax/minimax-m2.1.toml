@@ -15,7 +15,6 @@ input = 0.30
 output = 1.20
 cache_read = 0.03
 cache_write = 0.38
-
 [limit]
 context = 204_000
 output = 64_000
