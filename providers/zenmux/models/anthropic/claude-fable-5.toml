@@ -5,7 +5,7 @@ reasoning_options = [{ type = "effort", values = ["low", "medium", "high"] }]
 input = 10.00
 output = 50.00
 cache_read = 1.00
-cache_write = 12.50
+cache_write = 0.00
 
 [provider]
 npm = "@ai-sdk/anthropic"
