@@ -2,5 +2,5 @@ base_model = "google/gemma-4-31b-it"
 reasoning_options = []
 
 [cost]
-input = 0
-output = 0
+input = 1800.00
+output = 7100.00
