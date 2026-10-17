@@ -4,5 +4,5 @@ release_date = "2026-02-28"
 last_updated = "2026-06-11"
 
 [cost]
-input = 3.125
-output = 12.5
+input = 2.500
+output = 10.0
