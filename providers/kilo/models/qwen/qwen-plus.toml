@@ -1,10 +1,22 @@
-base_model = "alibaba/qwen-plus"
+name = "Qwen: Qwen-Plus"
 description = "Qwen instruction model for multilingual chat, reasoning, and tool use"
+release_date = "2024-01-25"
+last_updated = "2025-09-11"
+attachment = false
 reasoning = false
-structured_output = true
+temperature = true
+tool_call = true
+open_weights = false
 
 [cost]
-input = 0.26
-output = 0.78
-cache_read = 0.052
-cache_write = 0.325
+input = 0.3
+output = 0.8
+cache_read = 0.05
+
+[limit]
+context = 1000000
+output = 32768
+
+[modalities]
+input = ["text"]
+output = ["text"]
