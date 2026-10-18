@@ -5,7 +5,7 @@ name = "Magistral Medium (latest)"
 description = "Mistral reasoning model for transparent analysis, math, and complex decisions"
 family = "magistral-medium"
 release_date = "2025-03-17"
-last_updated = "2025-03-20"
+last_updated = "2026-10-18"
 attachment = true
 reasoning = true
 temperature = true
@@ -21,6 +21,7 @@ values = ["none", "high"]
 [cost]
 input = 2
 output = 5
+cache_read = 0.15
 
 [limit]
 context = 262_144
