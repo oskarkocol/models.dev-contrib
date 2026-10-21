@@ -2,5 +2,5 @@ base_model = "minimax/MiniMax-M3"
 reasoning_options = []
 
 [cost]
-input = 0
-output = 0
+input = 6300
+output = 25000
