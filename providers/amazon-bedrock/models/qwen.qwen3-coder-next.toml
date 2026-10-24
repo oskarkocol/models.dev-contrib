@@ -1,9 +1,24 @@
-# https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-qwen-qwen3-coder-next.html
-# https://huggingface.co/Qwen/Qwen3-Coder-Next (explicitly non-thinking)
-# https://aws.amazon.com/bedrock/pricing/ (US Standard pricing)
-base_model = "alibaba/qwen3-coder-next"
+name = "Qwen3 Coder Next"
+description = "Qwen coding model for software agents, repository edits, and code reasoning"
+family = "qwen"
+release_date = "2026-02-06"
 last_updated = "2026-02-06"
+attachment = false
+reasoning = true
+reasoning_options = []
+temperature = true
+tool_call = true
+structured_output = true
+open_weights = true
 
 [cost]
 input = 0.50
-output = 1.20
+output = 1.2
+
+[limit]
+context = 131_072
+output = 65_536
+
+[modalities]
+input = ["text"]
+output = ["text"]
