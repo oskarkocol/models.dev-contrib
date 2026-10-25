@@ -15,7 +15,7 @@ open_weights = false
 [cost]
 input = 30.00
 output = 180.00
-cache_read = 30.00
+cache_read = 3.00
 
 [limit]
 context = 1_050_000
@@ -28,4 +28,3 @@ output = ["text"]
 
 [provider]
 npm = "@ai-sdk/openai"
-api = "https://opencode.ai/inference/openai/v1"
