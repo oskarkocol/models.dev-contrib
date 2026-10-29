@@ -1,28 +1,23 @@
-# Mid-conversation (Chat Completions, probed 2026-10-19): system_updates = false: hoisted on Parasail (live)
-# effort_updates = false: no per-turn effort control
-schema = 2
-base_model = "gryphe/mythomax-l2-13b"
+name = "MythoMax 13B"
 description = "Open-weight instruction model for adaptable chat and self-hosted production workloads"
-
-[capabilities]
-tools = { supported = false }
-reasoning = { supported = false }
+release_date = "2023-07-02"
+last_updated = "2023-07-02"
+attachment = false
+reasoning = false
+temperature = true
+tool_call = false
 structured_output = true
+knowledge = "2023-06-30"
+open_weights = true
+
+[cost]
+input = 0.08
+output = 0.11
 
 [limit]
-context = 8_192
-output = 3_686
+context = 4_096
+output = 4_096
 
-[api.chat-completions]
-
-[api.responses]
-sdk = { aisdk = "@ai-sdk/openai", opencodeai = "@opencode/ai/providers/openai-compatible/responses" }
-
-[api.messages]
-sdk = { aisdk = "@ai-sdk/anthropic", opencodeai = "@opencode/ai/providers/anthropic-compatible" }
-
-[cost.text.input]
-price = 0.08
-
-[cost.text.output]
-price = 0.11
+[modalities]
+input = ["text"]
+output = ["text"]
