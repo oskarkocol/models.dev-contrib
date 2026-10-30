@@ -1,29 +1,25 @@
-# Mid-conversation (Chat Completions, probed 2026-10-19): system_updates = false: hoisted on Venice (live)
-# effort_updates = false: no per-turn effort control
-# tools.updates = false: Chat Completions rejects tool_addition/tool_removal for non-Claude-4.8+ models (live 400)
-schema = 2
-base_model = "alibaba/qwen3-235b-a22b-thinking-2507"
+name = "Qwen3 235B A22B Thinking 2507"
 description = "Qwen reasoning model for deliberate problem solving, math, and coding"
-
-[capabilities]
-tools = { supported = true }
-reasoning = { supported = true }
+family = "qwen"
+release_date = "2025-07-25"
+last_updated = "2025-07-25"
+attachment = false
+reasoning = true
+temperature = true
+tool_call = true
 structured_output = false
+knowledge = "2025-06-30"
+open_weights = true
+reasoning_options = []
+
+[cost]
+input = 0.4500
+output = 3.500
 
 [limit]
-context = 128_000
-output = 16_384
+context = 131_072
+output = 262_144
 
-[api.chat-completions]
-
-[api.responses]
-sdk = { aisdk = "@ai-sdk/openai", opencodeai = "@opencode/ai/providers/openai-compatible/responses" }
-
-[api.messages]
-sdk = { aisdk = "@ai-sdk/anthropic", opencodeai = "@opencode/ai/providers/anthropic-compatible" }
-
-[cost.text.input]
-price = 0.45
-
-[cost.text.output]
-price = 3.5
+[modalities]
+input = ["text"]
+output = ["text"]
