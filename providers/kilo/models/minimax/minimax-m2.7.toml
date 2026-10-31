@@ -1,18 +1,24 @@
-# Mid-conversation (Kilo Chat Completions; https://kilo.ai/docs/gateway/api-reference): effort_updates = false and tools.updates = false:
-# system messages take string content only, with no per-turn effort or tool addition/removal mechanism.
-# system_updates unset: Kilo routes each request to Vercel AI Gateway, OpenRouter or a direct upstream and doesn't document where a mid-conversation system message ends up.
-schema = 2
-base_model = "minimax/MiniMax-M2.7"
+name = "MiniMax: MiniMax M2.7"
 description = "MiniMax model for chat, coding, office work, and agentic tasks"
+family = "minimax-m2.7"
+release_date = "2026-03-18"
+last_updated = "2026-03-18"
+attachment = false
+reasoning_options = []
+reasoning = true
+temperature = true
+tool_call = true
+open_weights = true
 
-[capabilities]
-tools = { supported = true }
-reasoning = { supported = true, effort = ["high"] }
-structured_output = false
+[cost]
+input = 0.2
+output = 0.8
+cache_read = 0.04
 
-[cost.text.input]
-price = 0.3
-cache = { read = 0.06 }
+[limit]
+context = 204_800
+output = 131_072
 
-[cost.text.output]
-price = 1.2
+[modalities]
+input = ["text"]
+output = ["text"]

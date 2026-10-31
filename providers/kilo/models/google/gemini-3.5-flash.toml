@@ -1,22 +1,25 @@
-# Mid-conversation (Kilo Chat Completions; https://kilo.ai/docs/gateway/api-reference): effort_updates = false and tools.updates = false:
-# system messages take string content only, with no per-turn effort or tool addition/removal mechanism.
-# system_updates unset: Kilo routes each request to Vercel AI Gateway, OpenRouter or a direct upstream and doesn't document where a mid-conversation system message ends up.
-schema = 2
-base_model = "google/gemini-3.5-flash"
+name = "Google: Gemini 3.5 Flash"
 description = "Fast Gemini model balancing multimodal reasoning, tool use, and cost"
+release_date = "2026-05-19"
+last_updated = "2026-05-27"
+attachment = true
+reasoning_options = [{ type = "effort", values = ["low", "medium", "high", "xhigh"] }]
+reasoning = true
+tool_call = true
+temperature = true
+open_weights = false
 
-[capabilities]
-tools = { supported = true }
-reasoning = { supported = true, effort = ["minimal", "low", "medium", "high"] }
-structured_output = true
-
-[cost.text.input]
-price = 0.75
-cache = { read = 0.075, write = 0.041667 }
-
-[cost.text.output]
-price = 4.5
+[cost]
+input = 0.8
+output = 4.5
 reasoning = 4.5
+cache_read = 0.07
+cache_write = 0.04167
 
-[cost.web_search]
-price = 14
+[limit]
+context = 1048576
+output = 65536
+
+[modalities]
+input = ["audio", "image", "pdf", "text", "video"]
+output = ["text"]
