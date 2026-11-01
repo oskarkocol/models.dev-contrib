@@ -14,6 +14,7 @@ description = "High-speed MiniMax model for low-latency coding and agent workflo
 family = "minimax"
 open_weights = true
 release_date = "2026-02-13"
+last_updated = "2026-11-01"
 status = "deprecated"
 
 [modalities]
@@ -45,7 +46,7 @@ sdk = { aisdk = "@ai-sdk/openai", opencodeai = "@opencode/ai/providers/minimax/r
 
 [cost.text.input]
 price = 0.6
-cache = { read = 0.03, write = 0.375 }
+cache = { read = 0.06, write = 0.375 }
 
 [cost.text.output]
 price = 2.4

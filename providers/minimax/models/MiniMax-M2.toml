@@ -13,6 +13,7 @@ description = "Efficient open MiniMax model built for coding agents and tool-hea
 family = "minimax"
 open_weights = true
 release_date = "2025-10-27"
+last_updated = "2026-11-01"
 status = "deprecated"
 
 [modalities]
@@ -44,6 +45,7 @@ sdk = { aisdk = "@ai-sdk/openai", opencodeai = "@opencode/ai/providers/minimax/r
 
 [cost.text.input]
 price = 0.3
+cache = { read = 0.03, write = 0.375 }
 
 [cost.text.output]
 price = 1.2
