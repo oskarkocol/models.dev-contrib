@@ -1,20 +1,24 @@
-# Mid-conversation (Kilo Chat Completions; https://kilo.ai/docs/gateway/api-reference): effort_updates = false and tools.updates = false:
-# system messages take string content only, with no per-turn effort or tool addition/removal mechanism.
-# system_updates unset: Kilo routes each request to Vercel AI Gateway, OpenRouter or a direct upstream and doesn't document where a mid-conversation system message ends up.
-# Cache: implicit = true: Kilo adds cache_control breakpoints (system + last user/tool message) when the request has none (https://github.com/Kilo-Org/cloud/blob/d26988c12beabe7d276220e101507a807d4ea0cf/packages/web-shared/src/lib/ai-gateway/providers/qwen.ts, https://github.com/Kilo-Org/cloud/blob/d26988c12beabe7d276220e101507a807d4ea0cf/packages/web-shared/src/lib/ai-gateway/providers/openrouter/request-helpers.ts)
-schema = 2
-base_model = "alibaba/qwen3.7-max"
+name = "Qwen: Qwen3.7 Max"
 description = "Flagship Qwen model for complex reasoning, coding, and agentic workflows"
+release_date = "2025-08-26"
+last_updated = "2026-05-27"
+attachment = false
+reasoning_options = [{ type = "toggle" }, { type = "budget_tokens", min = 1, max = 262_144 }]
+reasoning = true
+tool_call = true
+temperature = true
+open_weights = false
 
-[capabilities]
-tools = { supported = true }
-reasoning = { supported = true, effort = ["none", "high"] }
-structured_output = true
-cache = { implicit = true }
+[cost]
+input = 1.475
+output = 4.425
+cache_read = 0.2950
+cache_write = 1.84375
 
-[cost.text.input]
-price = 1.475
-cache = { read = 0.295, write = 1.84375 }
+[limit]
+context = 1000000
+output = 65536
 
-[cost.text.output]
-price = 4.425
+[modalities]
+input = ["text"]
+output = ["text"]
