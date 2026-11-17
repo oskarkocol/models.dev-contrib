@@ -1,26 +1,33 @@
-# Lab identity: https://deepinfra.com/openai/gpt-oss-20b (Hugging Face repo openai/gpt-oss-20b)
-schema = 2
-base_model = "openai/gpt-oss-20b"
-description = "Open-weight GPT model for self-hosted reasoning and instruction-following workloads"
+# https://deepinfra.com/openai/gpt-oss-20b
+# Model-specific reasoning HTTP values (accessed 2026-06-25):
+# reasoning_effort = "low"|"medium"|"high".
+# Sources:
+# https://docs.deepinfra.com/api-reference/chat-completions/openai-chat-completions
+# https://deepinfra.com/openai/gpt-oss-20b/api
 
-[capabilities]
-reasoning = { supported = true, effort = ["low", "medium", "high"] }
-structured_output = true
-service_tier = ["flex", "priority"]
+name = "GPT OSS 20B"
+description = "Open-weight GPT model for self-hosted reasoning and instruction-following workloads"
+family = "gpt-oss"
+release_date = "2025-08-05"
+last_updated = "2025-08-05"
+attachment = false
+reasoning = true
+reasoning_options = [{ type = "effort", values = ["low", "medium", "high"] }]
+temperature = true
+tool_call = true
+open_weights = true
+
+[cost]
+input = 0.03
+output = 0.14
+
+cache_read = 0.015
 
 [limit]
-output = 16_384
+context = 131_072
+# https://deepinfra.com/docs/advanced/max_tokens_limit
+output = 16_384	
 
-[cost.text.input]
-price = 0.03
-
-[cost.text.output]
-price = 0.14
-
-[[cost.multipliers]]
-when = { service_tier = { equals = "priority" } }
-factor = 1.5
-
-[[cost.multipliers]]
-when = { service_tier = { equals = "flex" } }
-factor = 0.8
+[modalities]
+input = ["text"]
+output = ["text"]
