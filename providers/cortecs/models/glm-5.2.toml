@@ -1,24 +1,12 @@
-# No toggle: Cortecs documents a thinking on/off switch only for Anthropic and Entrim, not for this model's routes (tensorix, scaleway, inceptron, mistral, arkane).
-# https://docs.cortecs.ai/routing/reasoning
-# Mid-conversation: Cortecs serves this model on POST https://api.cortecs.ai/v1/chat/completions; reasoning_effort and tools are per-request fields with no per-turn effort or tool-change mechanism (effort_updates = false, tools.updates = false). https://docs.cortecs.ai/api/chat-completions
-schema = 2
 base_model = "zhipuai/glm-5.2"
+# Cortecs Chat maps `reasoning_effort = high|max`; other efforts are not listed.
+# https://api.cortecs.ai/v1/models (accessed 2026-06-25)
+reasoning_options = [{ type = "effort", values = ["high", "max"]}]
 
-[capabilities]
-tools = { supported = true }
-reasoning = { supported = true, effort = ["high", "max"] }
-structured_output = true
+[interleaved]
+field = "reasoning_content"
 
-[limit]
-context = 1_048_576
-output = 1_000_000
-
-[api.chat-completions]
-compatibility = { reasoning_field = "reasoning_content" }
-
-[cost.text.input]
-price = 0.9
-cache = { read = 0.189 }
-
-[cost.text.output]
-price = 3.24
+[cost]
+input = 0.89
+output = 3.2
+cache_read = 0.19
