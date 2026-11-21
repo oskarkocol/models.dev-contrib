@@ -1,40 +1,23 @@
-# Source: https://routellm.abacus.ai/v1/models
-# RouteLLM input_modalities: ['text', 'image']
-# RouteLLM output_modalities: ['text']
-# RouteLLM context_length: None
-# RouteLLM max_completion_tokens: 64000
-# RouteLLM input_token_rate: 0.000002
-# RouteLLM output_token_rate: 0.00001
-# RouteLLM cached_input_token_rate: 0.0000001
-# Prices refreshed from https://routellm.abacus.ai/v1/models (accessed 2026-10-21).
-# Routed price: the catalog says each request goes to Sonnet 5, GPT-5.6 Terra, Grok 4.6 or
-# Gemini 3.7 Flash, and the listed rate is Sonnet 5's (the most expensive); a request
-# bills at the model it resolves to, which v2 can't express.
-# Input MIME types: JPEG and PNG, the formats all four routed models accept (their lab files).
-schema = 2
-name = "RouteLLM"
-description = "RouteLLM routes prompts to an appropriate Abacus-backed text-generation model"
+name = "Route LLM"
+description = "Automatic model router for matching prompts to suitable backends and budgets"
 family = "gpt"
-open_weights = false
 release_date = "2024-01-01"
-last_updated = "2026-07-10"
-
-[modalities]
-input = ["text", "image/jpeg", "image/png"]
-output = ["text"]
-
-[capabilities]
-tools = { supported = true }
-reasoning = { supported = false }
+last_updated = "2024-01-01"
+attachment = true
+reasoning = false
 temperature = true
+knowledge = "2024-10"
+tool_call = true
+open_weights = false
+
+[cost]
+input = 2.00
+output = 10.00
 
 [limit]
 context = 128_000
-output = 64_000
+output = 16_384
 
-[cost.text.input]
-price = 2
-cache = { read = 0.1 }
-
-[cost.text.output]
-price = 10
+[modalities]
+input = ["text", "image"]
+output = ["text"]
