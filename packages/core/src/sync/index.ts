@@ -17,12 +17,17 @@ import {
   withoutModeCosts,
 } from "../model-file-v2.js";
 import { isSchemaV2, labModelV2ToV1, modelV2ToV1, withoutV1ReasoningCost } from "../translate.js";
+import { keepInheritedNote, withPredecessorCapabilities } from "./inherit.js";
 import { openMissingModelIssues } from "./missing-issues.js";
 import { MissingReasoningOptionsError } from "./missing-reasoning-options.js";
 import { aiand } from "./providers/aiand.js";
+import { alibaba } from "./providers/alibaba.js";
 import { aimlapi } from "./providers/aimlapi.js";
 import { ambient } from "./providers/ambient.js";
+import { amazonBedrock } from "./providers/amazon-bedrock.js";
+import { cerebras } from "./providers/cerebras.js";
 import { anthropic } from "./providers/anthropic.js";
+import { azure } from "./providers/azure.js";
 import { baseten } from "./providers/baseten.js";
 import { chutes } from "./providers/chutes.js";
 import { cloudflareAiGateway } from "./providers/cloudflare-ai-gateway.js";
@@ -30,6 +35,7 @@ import { cloudflareWorkersAi } from "./providers/cloudflare-workers-ai.js";
 import { cortecs } from "./providers/cortecs.js";
 import { crossmodel } from "./providers/crossmodel.js";
 import { deepinfra } from "./providers/deepinfra.js";
+import { deepseek } from "./providers/deepseek.js";
 import { digitalocean } from "./providers/digitalocean.js";
 import { edenai } from "./providers/edenai.js";
 import { empiriolabs } from "./providers/empiriolabs.js";
@@ -38,6 +44,7 @@ import { fireworksAi } from "./providers/fireworks-ai.js";
 import { friendli } from "./providers/friendli.js";
 import { githubCopilot } from "./providers/github-copilot.js";
 import { google } from "./providers/google.js";
+import { groq } from "./providers/groq.js";
 import { hyper } from "./providers/hyper.js";
 import { hostingerRouter } from "./providers/hostinger-router.js";
 import { huggingface } from "./providers/huggingface.js";
@@ -49,9 +56,9 @@ import { llmgateway, llmgatewayProviders } from "./providers/llmgateway.js";
 import { mergeGateway } from "./providers/merge-gateway.js";
 import { meta } from "./providers/meta.js";
 import { mistral } from "./providers/mistral.js";
-import { modular } from "./providers/modular.js";
 import { nanoGpt } from "./providers/nano-gpt.js";
 import { nearai } from "./providers/nearai.js";
+import { nebius } from "./providers/nebius.js";
 import { novitaAi } from "./providers/novita-ai.js";
 import { ollamaCloud } from "./providers/ollama-cloud.js";
 import { openai } from "./providers/openai.js";
@@ -64,6 +71,7 @@ import { prime } from "./providers/prime.js";
 import { requesty } from "./providers/requesty.js";
 import { sambaNova } from "./providers/sambanova.js";
 import { morph } from "./providers/morph.js";
+import { moonshotai } from "./providers/moonshotai.js";
 import { tinfoil } from "./providers/tinfoil.js";
 import { vercel } from "./providers/vercel.js";
 import { venice } from "./providers/venice.js";
@@ -108,6 +116,8 @@ export interface SyncProvider<SourceModel> {
    * deduped GitHub issue per missing model ID.
    */
   skipCreates?: boolean;
+  /** Copy hand-set capabilities from the same host's previous model in the family onto new files (default true). */
+  inheritPredecessorCapabilities?: boolean;
   /** Report remote-only models skipped by skipCreates as GitHub issues. */
   trackMissingModels?: boolean;
   deleteMissing?: boolean;
@@ -190,8 +200,12 @@ export interface SyncResult {
 
 export const providers: {
   aiand: SyncProvider<any>;
+  alibaba: SyncProvider<any>;
   aimlapi: SyncProvider<any>;
   ambient: SyncProvider<any>;
+  "amazon-bedrock": SyncProvider<any>;
+  azure: SyncProvider<any>;
+  cerebras: SyncProvider<any>;
   anthropic: SyncProvider<any>;
   baseten: SyncProvider<any>;
   chutes: SyncProvider<any>;
@@ -200,6 +214,7 @@ export const providers: {
   cortecs: SyncProvider<any>;
   crossmodel: SyncProvider<any>;
   deepinfra: SyncProvider<any>;
+  deepseek: SyncProvider<any>;
   digitalocean: SyncProvider<any>;
   edenai: SyncProvider<any>;
   empiriolabs: SyncProvider<any>;
@@ -208,6 +223,7 @@ export const providers: {
   friendli: SyncProvider<any>;
   "github-copilot": SyncProvider<any>;
   google: SyncProvider<any>;
+  groq: SyncProvider<any>;
   hyper: SyncProvider<any>;
   "hostinger-router": SyncProvider<any>;
   huggingface: SyncProvider<any>;
@@ -220,9 +236,9 @@ export const providers: {
   "merge-gateway": SyncProvider<any>;
   meta: SyncProvider<any>;
   mistral: SyncProvider<any>;
-  modular: SyncProvider<any>;
   "nano-gpt": SyncProvider<any>;
   nearai: SyncProvider<any>;
+  nebius: SyncProvider<any>;
   "novita-ai": SyncProvider<any>;
   obscurify: SyncProvider<any>;
   ofox: SyncProvider<any>;
@@ -235,6 +251,7 @@ export const providers: {
   requesty: SyncProvider<any>;
   sambanova: SyncProvider<any>;
   morph: SyncProvider<any>;
+  moonshotai: SyncProvider<any>;
   tinfoil: SyncProvider<any>;
   vercel: SyncProvider<any>;
   venice: SyncProvider<any>;
@@ -242,8 +259,12 @@ export const providers: {
   xai: SyncProvider<any>;
 } = {
   aiand,
+  alibaba,
   aimlapi,
   ambient,
+  "amazon-bedrock": amazonBedrock,
+  azure,
+  cerebras,
   anthropic,
   baseten,
   chutes,
@@ -252,6 +273,7 @@ export const providers: {
   cortecs,
   crossmodel,
   deepinfra,
+  deepseek,
   digitalocean,
   edenai,
   empiriolabs,
@@ -260,6 +282,7 @@ export const providers: {
   friendli,
   "github-copilot": githubCopilot,
   google,
+  groq,
   hyper,
   "hostinger-router": hostingerRouter,
   huggingface,
@@ -272,9 +295,9 @@ export const providers: {
   "merge-gateway": mergeGateway,
   meta,
   mistral,
-  modular,
   "nano-gpt": nanoGpt,
   nearai,
+  nebius,
   "novita-ai": novitaAi,
   obscurify,
   ofox,
@@ -287,6 +310,7 @@ export const providers: {
   requesty,
   sambanova: sambaNova,
   morph,
+  moonshotai,
   tinfoil,
   vercel,
   venice,
@@ -318,7 +342,7 @@ export const groups = {
     "vercel",
   ],
   cloudflare: ["cloudflare-ai-gateway", "cloudflare-workers-ai"],
-  direct: ["aiand", "ambient", "anthropic", "baseten", "chutes", "cortecs", "deepinfra", "digitalocean", "engy", "fireworks-ai", "friendli", "github-copilot", "google", "hyper", "meta", "mistral", "modular", "morph", "nearai", "obscurify", "ollama-cloud", "openai", "ovhcloud", "pioneer", "sambanova", "tinfoil", "venice", "wandb", "xai"],
+  direct: ["aiand", "alibaba", "amazon-bedrock", "ambient", "anthropic", "azure", "baseten", "cerebras", "chutes", "cortecs", "deepinfra", "deepseek", "digitalocean", "engy", "fireworks-ai", "friendli", "github-copilot", "google", "groq", "hyper", "meta", "mistral", "moonshotai", "morph", "nearai", "nebius", "obscurify", "ollama-cloud", "openai", "ovhcloud", "pioneer", "sambanova", "tinfoil", "venice", "wandb", "xai"],
 } as const;
 
 type ProviderID = keyof typeof providers;
@@ -355,6 +379,7 @@ export async function syncProvider<SourceModel>(
   const missingRemote = new Set<string>();
   const missingReasoning = new Map<string, string>();
   const translateNotices: string[] = [];
+  const translateFailures: string[] = [];
   let nonTextLabs: Set<string> | undefined;
   for (const notice of provider.sourceNotices?.(sourceModels) ?? []) {
     translateNotices.push(notice);
@@ -376,9 +401,16 @@ export async function syncProvider<SourceModel>(
         },
       });
     } catch (error) {
-      if (!(error instanceof MissingReasoningOptionsError)) throw error;
-      missingReasoning.set(error.modelId, error.message);
-      console.warn(error.message);
+      if (error instanceof MissingReasoningOptionsError) {
+        missingReasoning.set(error.modelId, error.message);
+        console.warn(error.message);
+        continue;
+      }
+      // One model the module can't translate shouldn't stop the provider. It's skipped and reported,
+      // and nothing is deleted this run, since its file can't be told apart from a dropped model.
+      const message = `Skipped a model that failed to translate (${provider.sourceID?.(sourceModel) ?? "unknown id"}): ${error instanceof Error ? error.message : String(error)}`;
+      translateFailures.push(message);
+      console.warn(message);
       continue;
     }
     if (translated === undefined) {
@@ -417,7 +449,7 @@ export async function syncProvider<SourceModel>(
       modelV2ToV1({ ...translated.v2, id: translated.id }, { provider: provider.id, path: relativePath }, npm);
       const translatedHeader = translated.header === undefined ? "" : leadingComments(translated.header);
       const header = provider.authoritativeHeaders
-        ? translatedHeader
+        ? keepInheritedNote(existing.get(relativePath)?.header, translatedHeader)
         : existing.get(relativePath)?.header || translatedHeader;
       desiredV2.set(relativePath, { content: header + formatModelV2(translated.v2) });
       continue;
@@ -467,7 +499,7 @@ export async function syncProvider<SourceModel>(
       ? undefined
       : leadingComments(translated.header);
     const header = provider.authoritativeHeaders
-      ? translatedHeader ?? ""
+      ? keepInheritedNote(existing.get(relativePath)?.header, translatedHeader ?? "")
       : (existing.get(relativePath)?.header || translatedHeader) ?? "";
     desired.set(relativePath, {
       model: parsed.data,
@@ -501,13 +533,16 @@ export async function syncProvider<SourceModel>(
         npm,
       );
       if (content === undefined) continue;
+      const inherited = provider.inheritPredecessorCapabilities === false
+        ? content
+        : withPredecessorCapabilities(content, [...existing].map(([file, entry]) => [file, entry.v2]), modelMetadata);
       files.push({ status: "created", path: filePath });
       if (options.dryRun) {
         console.log(`Would create ${relativePath}`);
       } else {
         await mkdir(path.dirname(filePath), { recursive: true });
         if (await isSymlink(filePath)) await rm(filePath, { force: true });
-        await Bun.write(filePath, content);
+        await Bun.write(filePath, inherited);
       }
       continue;
     }
@@ -571,14 +606,23 @@ export async function syncProvider<SourceModel>(
         continue;
       }
     }
+    let content = file.content;
+    if (current === undefined && provider.inheritPredecessorCapabilities !== false) {
+      modelMetadata ??= await readModelMetadata(provider.modelsDir);
+      content = withPredecessorCapabilities(content, [...existing].map(([path, entry]) => [path, entry.v2]), modelMetadata);
+    }
     files.push({ status: current === undefined ? "created" : "updated", path: filePath });
     if (options.dryRun) {
       console.log(`Would ${current === undefined ? "create" : "update"} ${relativePath}`);
     } else {
       await mkdir(path.dirname(filePath), { recursive: true });
       if (await isSymlink(filePath)) await rm(filePath, { force: true });
-      await Bun.write(filePath, file.content);
+      await Bun.write(filePath, content);
     }
+  }
+
+  if (translateFailures.length > Math.max(3, Math.floor(sourceModels.length / 5))) {
+    throw new Error(`${provider.name}: ${translateFailures.length} of ${sourceModels.length} models failed to translate\n${translateFailures.join("\n")}`);
   }
 
   const missingLocal: string[] = [];
@@ -592,7 +636,7 @@ export async function syncProvider<SourceModel>(
       unchanged++;
       continue;
     }
-    if (provider.deleteMissing === false) {
+    if (provider.deleteMissing === false || translateFailures.length > 0) {
       missingLocal.push(relativePath);
       console.log(`Retaining model missing from source: ${relativePath}`);
       unchanged++;
@@ -614,6 +658,7 @@ export async function syncProvider<SourceModel>(
   }
 
   const notices = [
+    ...translateFailures,
     ...translateNotices,
     ...v2Notices,
     ...missingReasoning.values(),
@@ -984,6 +1029,7 @@ async function safeWritePath(root: string, relativePath: string, allowLeafSymlin
 async function readModelMetadata(modelsDir: string) {
   const metadataDir = modelMetadataDir(modelsDir);
   const result: Record<string, Record<string, unknown>> = {};
+  if (!existsSync(metadataDir)) return result;
 
   for await (const modelPath of new Bun.Glob("**/*.toml").scan({
     cwd: metadataDir,
@@ -1003,6 +1049,8 @@ async function readModelMetadata(modelsDir: string) {
 async function readNonTextOutputLabs(modelsDir: string) {
   const metadataDir = modelMetadataDir(modelsDir);
   const result = new Set<string>();
+  // A provider directory outside a catalog (as in tests) has no lab files to check.
+  if (!existsSync(metadataDir)) return result;
   for await (const modelPath of new Bun.Glob("**/*.toml").scan({ cwd: metadataDir, absolute: true, followSymlinks: true })) {
     const toml = Bun.TOML.parse(await Bun.file(modelPath).text()) as { modalities?: { output?: string[] } };
     const output = toml.modalities?.output;

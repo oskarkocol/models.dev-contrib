@@ -119,7 +119,7 @@ function labModalities(modelID: string) {
   }
 }
 
-function inheritedOutput(canonical: string | undefined, context: number) {
+export function inheritedOutput(canonical: string | undefined, context: number) {
   if (canonical === undefined) return context;
   const labOutput = (modelMetadata(canonical).limit as { output?: number } | undefined)?.output;
   return labOutput !== undefined && labOutput > context ? context : undefined;
@@ -135,6 +135,8 @@ function dateFromTimestamp(timestamp: number) {
   return new Date(timestamp * 1_000).toISOString().slice(0, 10);
 }
 
+function usd(value: number): number;
+function usd(value: number | undefined): number | undefined;
 function usd(value: number | undefined) {
   if (value === undefined) return undefined;
   return Math.round(value * EUR_TO_USD * 1_000) / 1_000;
