@@ -1,21 +1,37 @@
-# Native Messages prefers $.thinking.type = "adaptive" with $.output_config.effort = "low"|"medium"|"high"|"max"; enabled budget_tokens >= 1024 is deprecated and must be < $.max_tokens. https://docs.aihubmix.com/cn/api/Claude-Native (accessed 2026-06-25)
-# Prices, limits and input modalities: AIHubMix catalog GET https://aihubmix.com/api/v1/models (2026-10-21).
-# Cache: https://docs.aihubmix.com/cn/practices/prompt-caching.md
-schema = 2
-base_model = "anthropic/claude-opus-4-6"
+name = "Claude Opus 4.6"
 description = "Flagship Claude model for deep reasoning, coding, and long-horizon agents"
-
-[capabilities]
-reasoning = { supported = true, toggle = true, effort = ["low", "medium", "high", "max"], budget = { min = 1_024 } }
+family = "claude-opus"
+release_date = "2026-02-05"
+last_updated = "2026-03-13"
+attachment = true
+reasoning = true
+reasoning_options = [{ type = "toggle" }, { type = "effort", values = ["low", "medium", "high", "max"] }, { type = "budget_tokens", min = 1_024 }]
+# Native Messages prefers $.thinking.type = "adaptive" with $.output_config.effort = "low"|"medium"|"high"|"max"; enabled budget_tokens >= 1024 is deprecated and must be < $.max_tokens. https://docs.aihubmix.com/cn/api/Claude-Native (accessed 2026-06-25)
+temperature = true
+tool_call = true
 structured_output = true
-cache = { explicit = { ttl = ["5m", "1h"], targets = ["tools", "system", "messages"], min_tokens = 4_096 } }
+knowledge = "2025-05-31"
+open_weights = false
 
-[api.chat-completions]
-legacy_interleaved = true
+interleaved = true
 
-[cost.text.input]
-price = 5
-cache = { read = 0.5, write = { "5m" = 6.25, "1h" = 10 } }
+[cost]
+input = 5
+output = 25
+cache_read = 0.0
+cache_write = 0.00
 
-[cost.text.output]
-price = 25
+[[cost.tiers]]
+tier = { size = 200_000 }
+input = 10
+output = 37.5
+cache_read = 1.0
+cache_write = 12.5
+
+[limit]
+context = 1_000_000
+output = 128_000
+
+[modalities]
+input = ["text", "image", "pdf"]
+output = ["text"]
