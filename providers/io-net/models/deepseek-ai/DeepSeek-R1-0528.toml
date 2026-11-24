@@ -1,21 +1,26 @@
-# Prices: GET https://api.intelligence.io.solutions/api/v1/models input/output/cache_read_token_price (USD per token, 2026-10-21); io.net documents this endpoint as the pricing source and lists no cache-write price.
-# knowledge: unsourced host value kept from the v1 file so v1 doesn't change.
-schema = 2
-base_model = "deepseek/deepseek-r1-0528"
 name = "DeepSeek R1"
 description = "DeepSeek reasoning model for multi-step analysis, math, coding, and tools"
+family = "deepseek-thinking"
+release_date = "2025-01-20"
+last_updated = "2025-05-28"
+attachment = false
+reasoning = true
+reasoning_options = []
+temperature = true
+tool_call = true
 knowledge = "2024-07"
+open_weights = true
 
-[capabilities]
-reasoning = { supported = true }
+[cost]
+input = 0.5
+output = 2.21
+cache_read = 0.3
+cache_write = 0.0
 
 [limit]
-context = 128_000
-output = 4_096
+context = 128000
+output = 4096
 
-[cost.text.input]
-price = 0.523667
-cache = { read = 0.261834 }
-
-[cost.text.output]
-price = 2.205333
+[modalities]
+input = ["text"]
+output = ["text"]
