@@ -1,16 +1,8 @@
-schema = 2
 base_model = "google/gemini-2.5-flash"
+reasoning_options = []
 
-[capabilities]
-reasoning = { supported = true }
-structured_output = true
-
-[cost.text.input]
-price = 0.3
-cache = { read = 0.03 }
-
-[cost.text.output]
-price = 2.5
-
-[cost.audio.input]
-price = 1
+[cost]
+input = 0.3
+output = 2.5
+cache_read = 0.00
+input_audio = 1
