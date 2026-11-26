@@ -1,18 +1,14 @@
-# Mid-conversation: Cortecs serves this model on POST https://api.cortecs.ai/v1/chat/completions; reasoning_effort and tools are per-request fields with no per-turn effort or tool-change mechanism (effort_updates = false, tools.updates = false). https://docs.cortecs.ai/api/chat-completions
-# Cache: automatic prefix caching on every routed provider (azure_sc, azure_spc). https://docs.cortecs.ai/routing/prompt-caching
-schema = 2
 base_model = "openai/gpt-5.4"
+# Cortecs Chat maps `reasoning_effort = low|medium|high`; no budget is exposed.
+# https://api.cortecs.ai/v1/models (accessed 2026-06-25)
 base_model_omit = ["limit.input"]
+reasoning_options = [{ type = "effort", values = ["low", "medium", "high"] }]
 
-[capabilities]
-tools = { supported = true }
-reasoning = { supported = true, effort = ["low", "medium", "high"] }
-cache = { implicit = true }
-structured_output = true
+[cost]
+input = 2.80986678
+output = 16.85
+cache_read = 0.29
 
-[cost.text.input]
-price = 2.844
-cache = { read = 0.29 }
-
-[cost.text.output]
-price = 17.058
+[limit]
+context = 1_050_000
+output = 128_000
